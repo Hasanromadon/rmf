@@ -1,11 +1,13 @@
 const { merge } = require('webpack-merge');
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const packageJson = require('../package.json');
 const commonConfig = require('./webpack.common');
-const packageJSon = require('../package.json');
 
 const prodConfig = {
   mode: 'production',
-  output: { filename: '[name].[contenthash].js' },
+  output: {
+    filename: '[name].[contenthash].js',
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'marketing',
@@ -13,7 +15,7 @@ const prodConfig = {
       exposes: {
         './MarketingApp': './src/bootstrap',
       },
-      shared: packageJSon.dependencies,
+      shared: packageJson.dependencies,
     }),
   ],
 };
