@@ -5,15 +5,18 @@ on:
     branches:
       - main
 
+    paths:
+      - 'packages/container/**'
+
 defaults:
   run:
     working-directory: packages/container
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
 
