@@ -1,0 +1,51 @@
+AS3 =
+-create bucket
+-edit property
+- enable static website hosting 
+-hosting type : Host a static website
+-edit permission
+- Block public access (bucket settings) edit
+- uncheck Block all public access
+
+
+-edit permission -> edit Bucket policy -> policy genarator -> Select Type of Policy : "s3 bucket policy" , Principal : * ,  action : "get object", Amazon Resource Name : "ARN/*" -> generate policy
+copy object : {
+  "Id": "Policy1618238422703",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1618238401662",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::hasan-dashboard/*",
+      "Principal": "*"
+    }
+  ]
+}
+
+copy di Bucket policy -> save
+
+CLOUDFRONT CONFIG
+-CREATE DISTRIBUTION
+Origin Domain Name : pilih bucket yang sudah dibuat 
+Viewer Protocol Policy : Redirect HTTP to HTTPS
+
+//setting DISTRIBUTION :
+
+Default Root Object : /container/latest/index.html
+
+Create Custom Error Response
+- HTTP Error Code : 403,
+- Default Root Object : /container/latest/index.html
+- HTTP Response Code : 200
+
+
+//SET IAM
+- set user
+- Access type : Programmatic access
+check list : AmazonS3FullAccess 
+ CloudFrontFullAccess
+
+set secret digithub
