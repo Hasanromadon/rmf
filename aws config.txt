@@ -39,7 +39,7 @@ Default Root Object : /container/latest/index.html
 Create Custom Error Response
 - HTTP Error Code : 403,
 - Default Root Object : /container/latest/index.html
-- HTTP Response Code : 200
+- HTTP Response Code : 200h
 
 
 //SET IAM
